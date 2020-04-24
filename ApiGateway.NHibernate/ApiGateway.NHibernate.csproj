@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiGateway.Core\ApiGateway.Core.csproj" />
+    <ProjectReference Include="..\ApiGateway.CrossCutting.Transactions.NHibernate\ApiGateway.CrossCutting.Transactions.NHibernate.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="2.1.2" />
+  </ItemGroup>
+
+</Project>
