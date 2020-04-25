@@ -1,7 +1,13 @@
-﻿namespace ApiGateway.Core.Contracts.Managers.RestServices
+﻿using System.Collections.Generic;
+
+namespace ApiGateway.Core.Contracts.Managers.RestServices
 {
     public interface IRestServiceManager
     {
-        void AddRestServie(RestServieDto dto);
+        IList<RestServiceDto> GetAllRestServices();
+        RestServiceDto GetRestServiceById(RestServiceIdDto dto);
+        void AddRestServie(RestServiceRequestDto dto);
+        void UpdateRestService(RestServiceDto dto);
+        void DeleteRestService(RestServiceIdDto dto);
     }
 }

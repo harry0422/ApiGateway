@@ -1,4 +1,6 @@
-﻿using ApiGateway.NHibernate.Common;
+﻿using ApiGateway.CrossCutting.Transactions;
+using ApiGateway.CrossCutting.Transactions.NHibernate;
+using ApiGateway.NHibernate.Common;
 using Autofac;
 using NHibernate;
 
@@ -12,11 +14,16 @@ namespace ApiGateway.IoC.Commons
             int port = 5432;
             string database = "postgres";
             string userName = "postgres";
-            string password = "Rodolfo1990";
+            string password = "Honduras2020";
+
+            builder.RegisterType<TransactionInterceptor>().SingleInstance();
 
             builder.RegisterInstance(NhSessionFactory.Create(host, port, database, userName, password))
-                .As<ISession>()
+                .As<ISessionFactory>()
                 .SingleInstance();
+
+            builder.RegisterType<NhUnitOfWork>().As<IUnitOfWork>();
+
         }
     }
 }

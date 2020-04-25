@@ -1,6 +1,7 @@
 ﻿using ApiGateway.Common;
 using ApiGateway.CrossCutting.Transactions.NHibernate;
 using NHibernate;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ApiGateway.NHibernate.Common
@@ -12,9 +13,9 @@ namespace ApiGateway.NHibernate.Common
             get { return NhUnitOfWork.Session; }
         }
 
-        public IQueryable<TEntity> GetAll()
+        public IList<TEntity> GetAll()
         {
-            return Session.Query<TEntity>();
+            return Session.Query<TEntity>().ToList();
         }
 
         public TEntity Get(TPrimaryKey key)

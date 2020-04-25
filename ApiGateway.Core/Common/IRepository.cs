@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace ApiGateway.Common
 {
@@ -9,7 +9,7 @@ namespace ApiGateway.Common
 
     public interface IRepository<TEntity, TPrimaryKey> : IRepository where TEntity : IAggregateRoot
     {
-        IQueryable<TEntity> GetAll();
+        IList<TEntity> GetAll();
         TEntity Get(TPrimaryKey key);
         void Insert(TEntity entity);
         void Update(TEntity entity);

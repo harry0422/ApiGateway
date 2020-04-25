@@ -1,3 +1,4 @@
+using ApiGateway.IoC.Commons;
 using ApiGateway.IoC.RestServices;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -27,6 +28,7 @@ namespace ApiGateway.Admin
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
+            builder.RegisterModule(new CommonsModule());
             builder.RegisterModule(new RestServicesModule());
         }
 
