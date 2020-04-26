@@ -1,4 +1,4 @@
-﻿using ApiGateway.Common;
+﻿using ApiGateway.Commons;
 using System;
 
 namespace ApiGateway.Core.RestServices.Model

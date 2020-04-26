@@ -1,4 +1,4 @@
-﻿using ApiGateway.Core.Contracts.Managers.RestServices;
+﻿using ApiGateway.Core.Contracts.RestServices;
 using ApiGateway.Core.RestServices.Managers;
 using ApiGateway.Core.RestServices.Repositories;
 using ApiGateway.CrossCutting.Transactions;

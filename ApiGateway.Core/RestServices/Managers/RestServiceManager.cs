@@ -1,9 +1,8 @@
-﻿using ApiGateway.Core.Contracts.Managers.RestServices;
+﻿using ApiGateway.Core.Contracts.RestServices;
 using ApiGateway.Core.RestServices.Mappers;
 using ApiGateway.Core.RestServices.Model;
 using ApiGateway.Core.RestServices.Repositories;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ApiGateway.Core.RestServices.Managers
 {

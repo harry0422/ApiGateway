@@ -1,4 +1,4 @@
-﻿using ApiGateway.Core.Contracts.Managers.RestServices;
+﻿using ApiGateway.Core.Contracts.RestServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

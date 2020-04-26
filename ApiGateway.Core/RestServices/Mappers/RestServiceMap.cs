@@ -1,4 +1,4 @@
-﻿using ApiGateway.Core.Contracts.Managers.RestServices;
+﻿using ApiGateway.Core.Contracts.RestServices;
 using ApiGateway.Core.RestServices.Model;
 using System.Collections.Generic;
 
