@@ -1,8 +1,14 @@
 ﻿using ApiGateway.Core.Contracts.Exposers;
+using ApiGateway.Core.Exposers.Exceptions;
 using ApiGateway.Core.Exposers.Mappers;
 using ApiGateway.Core.Exposers.Model;
 using ApiGateway.Core.Exposers.Repositories;
 using ApiGateway.Core.RestServices.Executors;
+using ApiGateway.Core.RestServices.Mappers;
+using ApiGateway.Core.RestServices.Model;
+using ApiGateway.Core.Serializers;
+using ApiGateway.Core.Services.Model;
+using ApiGateway.Core.Services.Repositories;
 using System.Collections.Generic;
 
 namespace ApiGateway.Core.Exposers.Managers
@@ -10,14 +16,19 @@ namespace ApiGateway.Core.Exposers.Managers
     public class ExposerManager : IExposerManager
     {
         private readonly IExposerRepository _exposerRepository;
+        private readonly IServiceRepository _serviceRepository;
+        private readonly IJsonSerializer _jsonSerializer;
         private readonly IRestServiceExecutor _restServiceExecutor;
 
-        public ExposerManager(IExposerRepository exposerRepository)
+        public ExposerManager(IExposerRepository exposerRepository, IServiceRepository serviceRepository, IJsonSerializer jsonSerializer, IRestServiceExecutor restServiceExecutor)
         {
             _exposerRepository = exposerRepository;
+            _serviceRepository = serviceRepository;
+            _jsonSerializer = jsonSerializer;
+            _restServiceExecutor = restServiceExecutor;
         }
 
-        public IList<ExposerDto> GetAllExposers()
+        public IList<ExposerDto> GetAll()
         {
             IList<Exposer> exposers = _exposerRepository.GetAll();
             return exposers.ToDto();
@@ -29,9 +40,11 @@ namespace ApiGateway.Core.Exposers.Managers
             return exposer.ToDto();
         }
 
-        public void AddExposer(AddExposerDto dto)
+        public void Insert(InsertExposerDto dto)
         {
-            Exposer exposer = new Exposer(dto.Name, dto.Path);
+            Service servie = _serviceRepository.Get(dto.ServiceId);
+            Exposer exposer = new Exposer(dto.Name, dto.Path, servie);
+
             _exposerRepository.Insert(exposer);
         }
 
@@ -51,10 +64,33 @@ namespace ApiGateway.Core.Exposers.Managers
 
         public ExposerResultDto ExecuteExposer(ExecuteExposerDto dto)
         {
-            //Exposer exposer = _exposerRepository.GetByPath(dto.Path);
+            Exposer exposer = _exposerRepository.GetByPath(dto.Path);
+            if (exposer == null) throw new ExposerDoesNotExistException();
 
-            //if (exposer.RestService == null) throw new System.Exception();
-            throw new System.NotImplementedException();
+            IList<Header> headers = new List<Header>();
+
+            foreach (var h in dto.Headers)
+            {
+                headers.Add(new Header(h.Name, h.Value));
+            }
+
+            switch (exposer.Service.ServiceType)
+            {
+                case ServiceType.DUMMY:
+                    return null;
+                case ServiceType.REST:
+                    RestService restService = _jsonSerializer.Deserialize<RestService>(exposer.Service.JsonDetails);
+                    RestServiceRequest request = new RestServiceRequest(restService, dto.HttpMethod, headers, dto.RequestBody);
+                    RestServiceResponse response = _restServiceExecutor.Execute(request);
+
+                    return response.ToDto();
+                case ServiceType.SOAP:
+                    return null;
+                case ServiceType.DATABASE:
+                    return null;
+                default:
+                    return null;
+            }
 
         }
     }

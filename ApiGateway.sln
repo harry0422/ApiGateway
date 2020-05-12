@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{71066238-7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Core", "ApiGateway.Core\ApiGateway.Core.csproj", "{5444A0A3-785D-4555-8339-F380F52EC4FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Rest", "ApiGateway.Rest\ApiGateway.Rest.csproj", "{7025142D-D5EB-48BC-9175-0A95647C7657}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{38BDDB51-E1CE-4F7D-BF62-CDDEEC24A934}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Admin", "ApiGateway.Admin\ApiGateway.Admin.csproj", "{A110077E-3639-4C6C-9B31-71C15B5AB22F}"
@@ -27,9 +25,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.IoC", "ApiGatewa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Adapters.Repositories.NHibernate", "ApiGateway.Adapters.Repositories.NHibernate\ApiGateway.Adapters.Repositories.NHibernate.csproj", "{24C4A450-4A8E-4BD5-B1C6-3EDB5A45E31C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway.Adapters.RestServiceExecutor.HttpClient", "ApiGateway.Adapters.RestServiceExecutor.HttpClient\ApiGateway.Adapters.RestServiceExecutor.HttpClient.csproj", "{E9D1B807-695D-4CED-8562-3DE0FE5A68D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Adapters.RestServiceExecutor.HttpClient", "ApiGateway.Adapters.RestServiceExecutor.HttpClient\ApiGateway.Adapters.RestServiceExecutor.HttpClient.csproj", "{E9D1B807-695D-4CED-8562-3DE0FE5A68D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9C92D19D-5A72-4936-9C1D-5333E043EFB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Rest", "ApiGateway.Rest\ApiGateway.Rest.csproj", "{6F20C026-B80A-47CD-8803-64988D81FBF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Tests.Adapters", "ApiGateway.Tests.Adapters\ApiGateway.Tests.Adapters.csproj", "{461E2B92-E24E-4ACB-9B24-0E44E076D584}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway.Adapters.JsonSerializer.JsonNet", "ApiGateway.Adapters.JsonSerializer.JsonNet\ApiGateway.Adapters.JsonSerializer.JsonNet.csproj", "{CD0D90BB-1F57-4005-A3CD-69E29B7725E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway.Tests.Core", "ApiGateway.Tests.Core\ApiGateway.Tests.Core.csproj", "{F04D76C4-05FC-4561-A9C6-AB56A9B32FF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +47,6 @@ Global
 		{5444A0A3-785D-4555-8339-F380F52EC4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5444A0A3-785D-4555-8339-F380F52EC4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5444A0A3-785D-4555-8339-F380F52EC4FD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7025142D-D5EB-48BC-9175-0A95647C7657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7025142D-D5EB-48BC-9175-0A95647C7657}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7025142D-D5EB-48BC-9175-0A95647C7657}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7025142D-D5EB-48BC-9175-0A95647C7657}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A110077E-3639-4C6C-9B31-71C15B5AB22F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A110077E-3639-4C6C-9B31-71C15B5AB22F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A110077E-3639-4C6C-9B31-71C15B5AB22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,13 +75,28 @@ Global
 		{E9D1B807-695D-4CED-8562-3DE0FE5A68D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9D1B807-695D-4CED-8562-3DE0FE5A68D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9D1B807-695D-4CED-8562-3DE0FE5A68D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F20C026-B80A-47CD-8803-64988D81FBF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F20C026-B80A-47CD-8803-64988D81FBF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F20C026-B80A-47CD-8803-64988D81FBF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F20C026-B80A-47CD-8803-64988D81FBF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{461E2B92-E24E-4ACB-9B24-0E44E076D584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{461E2B92-E24E-4ACB-9B24-0E44E076D584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{461E2B92-E24E-4ACB-9B24-0E44E076D584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{461E2B92-E24E-4ACB-9B24-0E44E076D584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD0D90BB-1F57-4005-A3CD-69E29B7725E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD0D90BB-1F57-4005-A3CD-69E29B7725E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD0D90BB-1F57-4005-A3CD-69E29B7725E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD0D90BB-1F57-4005-A3CD-69E29B7725E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F04D76C4-05FC-4561-A9C6-AB56A9B32FF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04D76C4-05FC-4561-A9C6-AB56A9B32FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04D76C4-05FC-4561-A9C6-AB56A9B32FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04D76C4-05FC-4561-A9C6-AB56A9B32FF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5444A0A3-785D-4555-8339-F380F52EC4FD} = {71066238-73B2-4296-8DA7-0AECCEA4B7E3}
-		{7025142D-D5EB-48BC-9175-0A95647C7657} = {38BDDB51-E1CE-4F7D-BF62-CDDEEC24A934}
 		{A110077E-3639-4C6C-9B31-71C15B5AB22F} = {38BDDB51-E1CE-4F7D-BF62-CDDEEC24A934}
 		{3A631794-F968-4E7C-8993-D02933918F2B} = {71066238-73B2-4296-8DA7-0AECCEA4B7E3}
 		{4D2B333C-B490-41D6-AFAA-C9A187950E54} = {97419445-4069-478F-9AC2-48AC5DDBB941}
@@ -87,6 +104,10 @@ Global
 		{31D2D6C9-56F4-46D6-8471-809A5657447A} = {97419445-4069-478F-9AC2-48AC5DDBB941}
 		{24C4A450-4A8E-4BD5-B1C6-3EDB5A45E31C} = {5BAE8C5B-9594-4E97-AB7C-75902AF45964}
 		{E9D1B807-695D-4CED-8562-3DE0FE5A68D1} = {5BAE8C5B-9594-4E97-AB7C-75902AF45964}
+		{6F20C026-B80A-47CD-8803-64988D81FBF7} = {38BDDB51-E1CE-4F7D-BF62-CDDEEC24A934}
+		{461E2B92-E24E-4ACB-9B24-0E44E076D584} = {9C92D19D-5A72-4936-9C1D-5333E043EFB2}
+		{CD0D90BB-1F57-4005-A3CD-69E29B7725E4} = {5BAE8C5B-9594-4E97-AB7C-75902AF45964}
+		{F04D76C4-05FC-4561-A9C6-AB56A9B32FF6} = {9C92D19D-5A72-4936-9C1D-5333E043EFB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA773934-7A97-454F-B2DF-14328AF4FA3B}

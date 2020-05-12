@@ -3,12 +3,10 @@ using System;
 
 namespace ApiGateway.Core.RestServices.Model
 {
-    public class RestService : EntityBase<string>, IAggregateRoot
+    public class RestService : ValueObjectBase
     {
-        public RestService() { }
         public RestService(string requestUrl, string httpMethod, string bodyFormat)
         {
-            Id = Guid.NewGuid().ToString().Replace("-", "");
             RequestUrl = requestUrl;
             HttpMethod = httpMethod;
             BodyFormat = bodyFormat;

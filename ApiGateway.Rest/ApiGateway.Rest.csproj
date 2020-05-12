@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="5.1.2" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiGateway.Core.Contracts\ApiGateway.Core.Contracts.csproj" />
     <ProjectReference Include="..\ApiGateway.IoC\ApiGateway.IoC.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,8 @@
-﻿using ApiGateway.NHibernate.RestServices.Mappings;
+﻿using ApiGateway.Adapters.Repositories.NHibernate.Exposers;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using NHibernate.Tool.hbm2ddl;
 using System;
 
 namespace ApiGateway.NHibernate.Common
@@ -20,7 +21,8 @@ namespace ApiGateway.NHibernate.Common
                     .Database(database)
                     .Username(userName)
                     .Password(password)))
-                    .Mappings(c => c.FluentMappings.AddFromAssemblyOf<RestServiceMap>())
+                    .Mappings(c => c.FluentMappings.AddFromAssemblyOf<ExposerMap>())
+                    //.ExposeConfiguration(cfg => { new SchemaExport(cfg).Create(false, true); })
                     .BuildSessionFactory();
             }
             catch (Exception e)

@@ -1,5 +1,9 @@
 using ApiGateway.IoC.Commons;
+using ApiGateway.IoC.DummyService;
+using ApiGateway.IoC.Exposers;
 using ApiGateway.IoC.RestServices;
+using ApiGateway.IoC.Serializers;
+using ApiGateway.IoC.Services;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -29,7 +33,11 @@ namespace ApiGateway.Admin
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new CommonsModule());
+            builder.RegisterModule(new ServicesModule());
+            builder.RegisterModule(new SerializersModule());
+            builder.RegisterModule(new ExposersModule());
             builder.RegisterModule(new RestServicesModule());
+            builder.RegisterModule(new DummyServicesModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

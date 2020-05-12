@@ -11,9 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiGateway.Adapters.JsonSerializer.JsonNet\ApiGateway.Adapters.JsonSerializer.JsonNet.csproj" />
     <ProjectReference Include="..\ApiGateway.Adapters.Repositories.NHibernate\ApiGateway.Adapters.Repositories.NHibernate.csproj" />
-    <ProjectReference Include="..\ApiGateway.Core\ApiGateway.Core.csproj" />
-    <ProjectReference Include="..\ApiGateway.NHibernate\ApiGateway.Adapters.Repositories.NHibernate.csproj" />
+    <ProjectReference Include="..\ApiGateway.Adapters.RestServiceExecutor.HttpClient\ApiGateway.Adapters.RestServiceExecutor.HttpClient.csproj" />
+    <ProjectReference Include="..\ApiGateway.CrossCutting\ApiGateway.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>

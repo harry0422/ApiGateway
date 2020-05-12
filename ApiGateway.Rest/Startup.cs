@@ -1,4 +1,8 @@
 using ApiGateway.IoC.Commons;
+using ApiGateway.IoC.Exposers;
+using ApiGateway.IoC.RestServices;
+using ApiGateway.IoC.Serializers;
+using ApiGateway.IoC.Services;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -17,7 +21,6 @@ namespace ApiGateway.Rest
         }
 
         public IConfiguration Configuration { get; private set; }
-
         public ILifetimeScope AutofacContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -29,6 +32,10 @@ namespace ApiGateway.Rest
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new CommonsModule());
+            builder.RegisterModule(new ExposersModule());
+            builder.RegisterModule(new ServicesModule());
+            builder.RegisterModule(new SerializersModule());
+            builder.RegisterModule(new RestServicesModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

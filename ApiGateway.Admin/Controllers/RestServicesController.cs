@@ -17,7 +17,7 @@ namespace ApiGateway.Admin.Controllers
         // GET: RestServices
         public ActionResult Index()
         {
-            IList<RestServiceDto> restServices = _restServicesManager.GetAllRestServices();
+            IList<RestServiceDto> restServices = _restServicesManager.GetAll();
             return View(restServices);
         }
 
@@ -25,7 +25,7 @@ namespace ApiGateway.Admin.Controllers
         public ActionResult Details(string id)
         {
             RestServiceIdDto dto = new RestServiceIdDto(id);
-            RestServiceDto restService = _restServicesManager.GetRestServiceById(dto);
+            RestServiceDto restService = _restServicesManager.GetById(dto);
             return View(restService);
         }
 
@@ -42,8 +42,13 @@ namespace ApiGateway.Admin.Controllers
         {
             try
             {
-                RestServiceRequestDto dto = new RestServiceRequestDto(collection["RequestUrl"], collection["HttpMethod"], collection["BodyFormat"]);
-                _restServicesManager.AddRestServie(dto);
+                InsertRestServiceDto dto = new InsertRestServiceDto();
+                dto.Name = collection["Name"];
+                dto.RequestUrl = collection["RequestUrl"];
+                dto.HttpMethod = collection["HttpMethod"];
+                dto.BodyFormat = collection["BodyFormat"];
+
+                _restServicesManager.Insert(dto);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -66,8 +71,15 @@ namespace ApiGateway.Admin.Controllers
         {
             try
             {
-                RestServiceDto dto = new RestServiceDto(id, collection["RequestUrl"], collection["HttpMethod"], collection["BodyFormat"]);
-                _restServicesManager.UpdateRestService(dto);
+                RestServiceDto dto = new RestServiceDto();
+
+                dto.Id = id;
+                dto.RequestUrl = collection["RequestUrl"];
+                dto.HttpMethod = collection["HttpMethod"];
+                dto.BodyFormat = collection["BodyFormat"];
+
+                _restServicesManager.Update(dto);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -90,7 +102,7 @@ namespace ApiGateway.Admin.Controllers
             try
             {
                 RestServiceIdDto dto = new RestServiceIdDto(id);
-                _restServicesManager.DeleteRestService(dto);
+                _restServicesManager.Delete(dto);
 
                 return RedirectToAction(nameof(Index));
             }

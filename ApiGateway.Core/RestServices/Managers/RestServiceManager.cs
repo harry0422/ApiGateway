@@ -1,51 +1,61 @@
 ﻿using ApiGateway.Core.Contracts.RestServices;
 using ApiGateway.Core.RestServices.Mappers;
 using ApiGateway.Core.RestServices.Model;
-using ApiGateway.Core.RestServices.Repositories;
+using ApiGateway.Core.Serializers;
+using ApiGateway.Core.Services.Model;
+using ApiGateway.Core.Services.Repositories;
 using System.Collections.Generic;
 
 namespace ApiGateway.Core.RestServices.Managers
 {
     public class RestServiceManager : IRestServiceManager
     {
-        private readonly IRestServiceRepository _restServiceRepository;
+        private readonly IServiceRepository _serviceRepository;
+        private readonly IJsonSerializer _jsonSerializer;
 
-        public RestServiceManager(IRestServiceRepository restServiceRepository)
+        public RestServiceManager(IServiceRepository serviceRepository, IJsonSerializer jsonSerializer)
         {
-            _restServiceRepository = restServiceRepository;
+            _serviceRepository = serviceRepository;
+            _jsonSerializer = jsonSerializer;
         }
 
-        public IList<RestServiceDto> GetAllRestServices()
+        public IList<RestServiceDto> GetAll()
         {
-            IList<RestService> restServices =  _restServiceRepository.GetAll();
-            return restServices.ToDto();
+            IList<RestServiceDto> dto = new List<RestServiceDto>();
+
+            IList<Service> restServices = _serviceRepository.GetByServiceType(ServiceType.REST);
+
+            foreach (var s in restServices)
+            {
+                RestService restService = _jsonSerializer.Deserialize<RestService>(s.JsonDetails);
+                dto.Add(restService.ToDto());
+            }
+
+            return dto;
         }
 
-        public RestServiceDto GetRestServiceById(RestServiceIdDto dto)
+        public RestServiceDto GetById(RestServiceIdDto dto)
         {
-            RestService restService = _restServiceRepository.Get(dto.Id);
-            return restService.ToDto();
+            throw new System.NotImplementedException();
         }
 
-        public void AddRestServie(RestServiceRequestDto dto)
+        public void Insert(InsertRestServiceDto dto)
         {
             RestService restService = new RestService(dto.RequestUrl, dto.HttpMethod, dto.BodyFormat);
-            _restServiceRepository.Insert(restService);
+            string jsonDetails = _jsonSerializer.Serialize(restService);
+            Service service = new Service(dto.Name, ServiceType.REST, jsonDetails);
+
+            _serviceRepository.Insert(service);
         }
 
-        public void UpdateRestService(RestServiceDto dto)
+        public void Update(RestServiceDto dto)
         {
-            RestService restService = _restServiceRepository.Get(dto.Id);
-            restService.RequestUrl = dto.RequestUrl;
-            restService.HttpMethod = dto.HttpMethod;
-            restService.BodyFormat = dto.BodyFormat;
-
-            _restServiceRepository.Update(restService);
+            throw new System.NotImplementedException();
         }
 
-        public void DeleteRestService(RestServiceIdDto dto)
+        public void Delete(RestServiceIdDto dto)
         {
-            _restServiceRepository.Delete(dto.Id);
+            _serviceRepository.Delete(dto.Id);
         }
     }
 }

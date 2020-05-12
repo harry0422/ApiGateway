@@ -11,7 +11,6 @@ namespace ApiGateway.Core.RestServices.Mappers
             if (entity == null) return null;
 
             RestServiceDto dto = new RestServiceDto();
-            dto.Id = entity.Id;
             dto.RequestUrl = entity.RequestUrl;
             dto.HttpMethod = entity.HttpMethod;
             dto.BodyFormat = entity.BodyFormat;

@@ -1,5 +1,6 @@
 ﻿using ApiGateway.Commons;
-using ApiGateway.Core.RestServices.Model;
+using ApiGateway.Core.Services.Model;
+using System;
 
 namespace ApiGateway.Core.Exposers.Model
 {
@@ -7,19 +8,21 @@ namespace ApiGateway.Core.Exposers.Model
     {
         public Exposer() { }
 
-        public Exposer(string name, string path)
+        public Exposer(string name, string path, Service service)
         {
+            Id = Guid.NewGuid().ToString().Replace("-", "");
             Name = name;
             Path = path;
+            Service = service;
         }
 
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public RestService RestService { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Path { get; set; }
+        public virtual Service Service { get; set; }
 
-        public void AddRestServie(RestService restService)
+        public virtual void AddServie(Service service)
         {
-            RestService = restService;
+            Service = service;
         }
 
         protected override void Validate()
